@@ -7,22 +7,13 @@ import useSheet from 'react-jss'
 // load Onsen UI library
 import 'onsenui';
 
+// là tu créés ton style
 const style = {
   test: {
     color: 'green'
   }
 };
 
-/*
-// Compile styles, apply plugins.
-const sheet = jss.createStyleSheet(style);
-
-// If you want to render on the client, insert it into DOM.
-sheet.attach()
-
-// If you want to render server-side, get the css text.
-console.log(sheet.toString());
-*/
 class HomePage extends React.Component {
   render() {
     return (
@@ -47,6 +38,7 @@ class SettingsPage extends React.Component {
       <Page
         renderToolbar={() =>
           <Toolbar>
+           /* là tu dis quelle classe tu veux utiliser, ici "test". La chaîne ne change jamais, c'est juste le dernier mot.*/
             <div className={this.props.sheet.classes.test}>Title</div>
           </Toolbar>
         }
@@ -59,6 +51,8 @@ class SettingsPage extends React.Component {
   }
 }
 
+// et là c'est comme redux-connect, ça créé un higher order component (en réécris ton composant avec des trucs en plus)
+// et ça sera ce nouveau nom de composant que tu utiliseras.
 const SettingsPageStyled = useSheet(SettingsPage, style)
 
 class App extends React.Component {
